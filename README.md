@@ -1,6 +1,28 @@
-# Web Calculator for Reference Intervals of Liver and Spleen Volume in Children
+# Pediatric Liver and Spleen Volume Reference Interval Calculator
 
-This repository contains a web-based calculator for reference intervals of liver and spleen volume in children. This application is designed to assist medical professionals in evaluating liver and spleen volumes in pediatric patients.
+A web-based calculator for reference intervals of liver and spleen volume in children.
+
+## Features
+
+- Calculates reference intervals (5th, 50th, 95th percentiles) for liver and spleen volumes
+- Uses regression formulas based on sex, height, and weight
+- Provides visual representation with percentile graphs
+- Suitable for children above 2 years of age
+
+## Server Configuration
+
+The application is configured to run on an internal network:
+
+- Server IP: 192.168.44.114
+- Port: 9000
+
+## Running the Application
+
+### Using Command Line
+
+```bash
+streamlit run main.py --server.address=192.168.44.114
+```
 
 ## Overview
 
@@ -61,12 +83,6 @@ Results are displayed as follows:
 git clone https://github.com/yourusername/Web_Calculator.git
 cd Web_Calculator
 pip install -r requirements.txt
-```
-
-## Running the Application
-
-```bash
-streamlit run main.py
 ```
 
 ## Requirements
