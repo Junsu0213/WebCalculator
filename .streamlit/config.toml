@@ -1,0 +1,4 @@
+[server]
+address = "192.168.44.114"
+port = 9000
+enableCORS = false 
