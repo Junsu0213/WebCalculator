@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
+.stApp {
+    background-color: #0a1929;
+    color: white;
+}
+
+.main {
+    background-color: #0a1929;
+    color: white;
+}
+
+.main-header {
+    background-color: #1e3a5c;
+    color: white;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.main-header h1 {
+    font-weight: 600;
+    margin: 0;
+}
+
+.section-header {
+    background-color: #1e3a5c;
+    color: white;
+    padding: 12px 20px;
+    margin-top: 35px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.section-header h2 {
+    font-weight: 600;
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-weight: 600;
+    color: #f0f0f0;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.table-header {
+    background-color: #1e3a5c;
+    color: white;
+}
+
+.required {
+    color: #ff6b6b;
+}
+
+.result-table {
+    width: 100%;
+}
+
+.caution {
+    font-style: italic;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+.chart-section {
+    margin-top: 30px;
+}
+
+.stButton>button {
+    background-color: #1e3a5c;
+    color: white;
+    border-radius: 8px !important;
+    font-weight: 600;
+    padding: 8px 24px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.stDateInput>div>div>input,
+.stNumberInput>div>div>input,
+.stRadio [role=radiogroup] {
+    width: 100%;
+    max-width: 400px;
+}
+
+.stDateInput>div>div>input {
+    width: 100%;
+    max-width: 400px;
+    color: white;
+    background-color: #1a2e4a;
+    border-radius: 6px;
+    border: 1px solid #2a4d7a;
+}
+
+.stNumberInput>div>div>input {
+    color: white;
+    background-color: #1a2e4a;
+    border-radius: 6px;
+    border: 1px solid #2a4d7a;
+}
+
+.stRadio [role=radiogroup] {
+    background-color: #1a2e4a;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+div.stButton>button:hover {
+    background-color: #2a4d7a;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #0a1929;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #1e3a5c;
+    border-radius: 5px;
+}
+
+.dataframe {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.dataframe thead th {
+    background-color: #1e3a5c;
+    padding: 12px 15px;
+    border: none;
+}
+
+.dataframe tbody td {
+    padding: 10px 15px;
+    border: none;
+}
+
+.stSubheader {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #f0f0f0;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.footer {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    margin-top: 20px;
+} 
