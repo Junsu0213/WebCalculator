@@ -1,22 +1,27 @@
+/* Import Nunito font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 
+/* Apply Nunito font to all elements */
 * {
     font-family: 'Nunito', sans-serif;
 }
 
+/* Main Streamlit app container styling - dark background */
 .stApp {
-    background-color: #0a1929;
+    background-color: #04111f;
     color: white;
 }
 
+/* Main content area styling */
 .main {
-    background-color: #0a1929;
+    background-color: #04111f;
     color: white;
 }
 
+/* Main header styling - the title at the top of the page */ /*#1e3a5c*/
 .main-header {
-    background-color: #1e3a5c;
-    color: white;
+    background-color: #0b1e33;
+    color: rgb(168, 209, 255);
     padding: 15px 20px;
     margin-bottom: 25px;
     border-radius: 12px;
@@ -24,60 +29,74 @@
     text-align: center;
 }
 
+/* H1 styling within the main header */
 .main-header h1 {
+    color: rgb(168, 209, 255);
     font-weight: 600;
     margin: 0;
+    font-size: 3rem;
 }
 
+/* Section headers - "Input data", "Reference interval", "Chart" sections */
 .section-header {
-    background-color: #1e3a5c;
-    color: white;
-    padding: 12px 20px;
+    background-color: #12273d;
+    color: rgb(168, 209, 255);
+    padding: 10px 20px;
     margin-top: 35px;
     margin-bottom: 25px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* H2 styling within section headers */
 .section-header h2 {
+    color: rgb(168, 209, 255);
     font-weight: 600;
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
 }
 
+/* H3 styling - subsection headers */
 h3 {
     font-weight: 600;
-    color: #f0f0f0;
+    color: white;
     margin-top: 25px;
     margin-bottom: 15px;
 }
 
+/* Table header styling */
 .table-header {
-    background-color: #1e3a5c;
+    background-color: #12273d;
     color: white;
 }
 
+/* Required field indicator styling (red asterisk) */
 .required {
     color: #ff6b6b;
 }
 
+/* Result table styling */
 .result-table {
     width: 100%;
 }
 
+/* Caution message styling - italic text below input fields */
 .caution {
+    color: orange;
     font-style: italic;
     margin-top: 10px;
     opacity: 0.8;
 }
 
+/* Chart section container styling */
 .chart-section {
     margin-top: 30px;
 }
 
+/* Button styling - "Show results" button */
 .stButton>button {
-    background-color: #1e3a5c;
-    color: white;
+    background-color: #12273d;
+    color: rgb(0, 208, 255);
     border-radius: 8px !important;
     font-weight: 600;
     padding: 8px 24px;
@@ -85,6 +104,7 @@ h3 {
     transition: all 0.3s ease;
 }
 
+/* Date input, number input, and radio button width settings */
 .stDateInput>div>div>input,
 .stNumberInput>div>div>input,
 .stRadio [role=radiogroup] {
@@ -92,28 +112,52 @@ h3 {
     max-width: 400px;
 }
 
+/* Date input field styling */
 .stDateInput>div>div>input {
     width: 100%;
     max-width: 400px;
-    color: white;
-    background-color: #1a2e4a;
+    color: white !important;
+    background-color: #1a2e4a !important;
     border-radius: 6px;
     border: 1px solid #2a4d7a;
 }
 
+/* Number input field styling - weight, height, volume inputs */
 .stNumberInput>div>div>input {
-    color: white;
-    background-color: #1a2e4a;
+    color: white !important;
+    background-color: #1a2e4a !important;
     border-radius: 6px;
     border: 1px solid #2a4d7a;
 }
 
+/* Make the Boy option blue and Girl option pink */
+.stRadio label:first-child p {
+    color: white !important; /* Boy - white */
+}
+
+.stRadio label:last-child p {
+    color: white !important; /* Girl - white */
+}
+
+/* Radio button container styling - sex selection */
 .stRadio [role=radiogroup] {
-    background-color: #1a2e4a;
+    background-color: #12273d;
     border-radius: 8px;
     padding: 8px 12px;
+    color: white !important;
 }
 
+/* Number input buttons (increment/decrement) styling */
+.stNumberInput button svg {
+    fill: white !important;
+}
+
+/* Date input calendar icon styling */
+.stDateInput svg {
+    fill: white !important;
+}
+
+/* Button hover effect */
 div.stButton>button:hover {
     background-color: #2a4d7a;
     color: white;
@@ -122,16 +166,19 @@ div.stButton>button:hover {
     transform: translateY(-2px);
 }
 
+/* Scrollbar styling */
 ::-webkit-scrollbar {
     width: 10px;
     background-color: #0a1929;
 }
 
+/* Scrollbar thumb (draggable part) styling */
 ::-webkit-scrollbar-thumb {
     background-color: #1e3a5c;
     border-radius: 5px;
 }
 
+/* Data table styling - reference interval tables */
 .dataframe {
     border-collapse: separate;
     border-spacing: 0;
@@ -140,34 +187,41 @@ div.stButton>button:hover {
     margin-bottom: 20px;
 }
 
+/* Table header cells styling */
 .dataframe thead th {
     background-color: #1e3a5c;
+    color: white;
     padding: 12px 15px;
     border: none;
 }
 
+/* Table body cells styling */
 .dataframe tbody td {
     padding: 10px 15px;
     border: none;
 }
 
+/* Streamlit subheader styling - chart titles */
 .stSubheader {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #f0f0f0;
+    color: white;
     margin-top: 10px;
     margin-bottom: 15px;
 }
 
+/* Form label styling */
 label {
+    color: white !important;
     font-weight: 600;
     margin-bottom: 8px;
     display: block;
 }
 
+/* Footer styling - copyright information at bottom */
 .footer {
     text-align: center;
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.9rem;
     margin-top: 20px;
-} 
+}

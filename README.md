@@ -39,7 +39,7 @@ The calculator requires the following input data:
 - Birth date
 - Imaging date
 - Weight (kg)
-- Height (cm)
+- Height (cm) - optional
 - Measured liver volume (optional)
 - Measured spleen volume (optional)
 
@@ -48,8 +48,8 @@ After providing the input data, click the "Show results" button to display the r
 ## Calculation Methods
 
 This calculator uses two regression formulas:
-1. Regression formula using sex, height, and weight
-2. Regression formula using sex and weight only
+1. Regression formula using sex and weight only
+2. Regression formula using sex, height, and weight (when height is provided)
 
 Each formula calculates liver volume, spleen volume, and liver-to-spleen volume ratio for the 5th, 50th, and 95th percentiles.
 
@@ -60,22 +60,11 @@ Results are displayed as follows:
 - Graphs showing volume changes according to weight
 - Comparison between measured values and reference values (when measured values are entered)
 
-## Features
+## Technical Details
 
-- Intuitive user interface
-- Dark theme design
-- Responsive layout
-- Interactive graphs
-- Age-optimized graph scales
-
-## Technology Stack
-
-- Python
-- Streamlit
-- Plotly
-- Pandas
-- NumPy
-- Matplotlib
+- The application uses Plotly for interactive data visualization
+- Age-specific graph scales are automatically applied based on the patient's age
+- The dark theme UI is designed for optimal visibility in clinical settings
 
 ## Installation
 
@@ -101,6 +90,13 @@ python-dateutil>=2.8.2
 - This calculator may not be suitable for children younger than 2 years old.
 - The calculated reference intervals do not replace clinical judgment and should be used for reference only.
 - All measurements depend on the accuracy of the input data.
+
+## Future Improvements
+
+- Add error handling for edge cases
+- Implement data validation for input fields
+- Add export functionality for reports
+- Improve accessibility features
 
 ## Developer Information
 

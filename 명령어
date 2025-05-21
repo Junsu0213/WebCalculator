@@ -1,1 +1,0 @@
-streamlit run main.py --server.address=192.168.44.114 --server.port=9000
