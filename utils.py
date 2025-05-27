@@ -20,20 +20,20 @@ def create_liver_chart_wt(sex, weight, age_group, measured_volumes):
     # Create Plotly graph
     fig = go.Figure()
     
-    # Add percentile lines to liver volume chart
+    # Add percentile lines to liver volume chart with legend
     fig.add_trace(go.Scatter(x=weights, y=liver_5_line, mode='lines', name='5th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=liver_50_line, mode='lines', name='50th percentile', 
-                            line=dict(color='rgba(255,255,255,0.7)'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.7)'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=liver_95_line, mode='lines', name='95th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
     
     
-    fig.add_trace(go.Scatter(x=[weight], y=[p5_volumes], mode='markers', name='5th percentile',
+    fig.add_trace(go.Scatter(x=[weight], y=[p5_volumes], mode='markers', name='5th percentile point',
                              marker=dict(size=10, color='white', symbol='circle-open', line=dict(width=2)), showlegend=False))
-    fig.add_trace(go.Scatter(x=[weight], y=[p50_volumes], mode='markers', name='Estimated (50)',
+    fig.add_trace(go.Scatter(x=[weight], y=[p50_volumes], mode='markers', name='Estimated (50th)',
                              marker=dict(size=10, color='red', symbol='circle'), showlegend=True))
-    fig.add_trace(go.Scatter(x=[weight], y=[p95_volumes], mode='markers', name='95th percentile',
+    fig.add_trace(go.Scatter(x=[weight], y=[p95_volumes], mode='markers', name='95th percentile point',
                              marker=dict(size=10, color='white', symbol='circle-open', line=dict(width=2)), showlegend=False))
     
     if measured_volumes != 0:
@@ -99,20 +99,20 @@ def create_spleen_chart_wt(sex, weight, age_group, measured_volumes):
     # Create Plotly graph
     fig = go.Figure()
     
-    # Add percentile lines to spleen volume chart
+    # Add percentile lines to spleen volume chart with legend
     fig.add_trace(go.Scatter(x=weights, y=spleen_5_line, mode='lines', name='5th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=spleen_50_line, mode='lines', name='50th percentile', 
-                            line=dict(color='rgba(255,255,255,0.7)'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.7)'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=spleen_95_line, mode='lines', name='95th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
     
     
-    fig.add_trace(go.Scatter(x=[weight], y=[p5_volumes], mode='markers', name='5th percentile',
+    fig.add_trace(go.Scatter(x=[weight], y=[p5_volumes], mode='markers', name='5th percentile point',
                              marker=dict(size=10, color='white', symbol='circle-open', line=dict(width=2)), showlegend=False))
-    fig.add_trace(go.Scatter(x=[weight], y=[p50_volumes], mode='markers', name='Estimated (50)',
+    fig.add_trace(go.Scatter(x=[weight], y=[p50_volumes], mode='markers', name='Estimated (50th)',
                              marker=dict(size=10, color='red', symbol='circle'), showlegend=True))
-    fig.add_trace(go.Scatter(x=[weight], y=[p95_volumes], mode='markers', name='95th percentile',
+    fig.add_trace(go.Scatter(x=[weight], y=[p95_volumes], mode='markers', name='95th percentile point',
                              marker=dict(size=10, color='white', symbol='circle-open', line=dict(width=2)), showlegend=False))
     
     if measured_volumes != 0:
@@ -160,7 +160,7 @@ def create_spleen_chart_wt(sex, weight, age_group, measured_volumes):
 
     fig.update_layout(showlegend=True)
 
-    return fig 
+    return fig
 
 # Function to create liver chart using height and weight
 def create_liver_chart_hwt(sex, height, weight, age_group, measured_volumes):
@@ -180,20 +180,20 @@ def create_liver_chart_hwt(sex, height, weight, age_group, measured_volumes):
     # Create Plotly graph
     fig = go.Figure()
     
-    # Add percentile lines to liver volume chart
+    # Add percentile lines to liver volume chart with legend
     fig.add_trace(go.Scatter(x=weights, y=liver_5_line, mode='lines', name='5th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=liver_50_line, mode='lines', name='50th percentile', 
-                            line=dict(color='rgba(255,255,255,0.7)'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.7)'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=liver_95_line, mode='lines', name='95th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
     
     
-    fig.add_trace(go.Scatter(x=[weight], y=[p5_volumes], mode='markers', name='5th percentile',
+    fig.add_trace(go.Scatter(x=[weight], y=[p5_volumes], mode='markers', name='5th percentile point',
                              marker=dict(size=10, color='white', symbol='circle-open', line=dict(width=2)), showlegend=False))
-    fig.add_trace(go.Scatter(x=[weight], y=[p50_volumes], mode='markers', name='Estimated (50)',
+    fig.add_trace(go.Scatter(x=[weight], y=[p50_volumes], mode='markers', name='Estimated (50th)',
                              marker=dict(size=10, color='red', symbol='circle'), showlegend=True))
-    fig.add_trace(go.Scatter(x=[weight], y=[p95_volumes], mode='markers', name='95th percentile',
+    fig.add_trace(go.Scatter(x=[weight], y=[p95_volumes], mode='markers', name='95th percentile point',
                              marker=dict(size=10, color='white', symbol='circle-open', line=dict(width=2)), showlegend=False))
     
     if measured_volumes != 0:
@@ -259,20 +259,20 @@ def create_spleen_chart_hwt(sex, height, weight, age_group, measured_volumes):
     # Create Plotly graph
     fig = go.Figure()
     
-    # Add percentile lines to spleen volume chart
+    # Add percentile lines to spleen volume chart with legend
     fig.add_trace(go.Scatter(x=weights, y=spleen_5_line, mode='lines', name='5th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=spleen_50_line, mode='lines', name='50th percentile', 
-                            line=dict(color='rgba(255,255,255,0.7)'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.7)'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=spleen_95_line, mode='lines', name='95th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=False))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
     
     
-    fig.add_trace(go.Scatter(x=[weight], y=[p5_volumes], mode='markers', name='5th percentile',
+    fig.add_trace(go.Scatter(x=[weight], y=[p5_volumes], mode='markers', name='5th percentile point',
                              marker=dict(size=10, color='white', symbol='circle-open', line=dict(width=2)), showlegend=False))
-    fig.add_trace(go.Scatter(x=[weight], y=[p50_volumes], mode='markers', name='Estimated (50)',
+    fig.add_trace(go.Scatter(x=[weight], y=[p50_volumes], mode='markers', name='Estimated (50th)',
                              marker=dict(size=10, color='red', symbol='circle'), showlegend=True))
-    fig.add_trace(go.Scatter(x=[weight], y=[p95_volumes], mode='markers', name='95th percentile',
+    fig.add_trace(go.Scatter(x=[weight], y=[p95_volumes], mode='markers', name='95th percentile point',
                              marker=dict(size=10, color='white', symbol='circle-open', line=dict(width=2)), showlegend=False))
     
     if measured_volumes != 0:

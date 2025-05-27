@@ -247,6 +247,16 @@ with col1:
     if show_results and weight > 0 and age_group:
         fig_liver = utils.create_liver_chart_wt(sex, weight, age_group, liver_volume)
         st.plotly_chart(fig_liver, use_container_width=True)
+        # Add explanation below the chart
+        st.markdown("""
+        <div style="background-color: #1a324c; padding: 10px 15px; border-radius: 8px; margin-top: 10px;">
+            <p style="color: white; margin: 0; font-size: 0.9rem; line-height: 1.4;">
+                The oblique solid line represents the quantile regression line predicting the 50th percentile, 
+                while the oblique dashed lines below and above correspond to the quantile regression lines 
+                predicting the 5th and 95th percentiles, respectively.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
     else:
         fig_liver = go.Figure()
         fig_liver.update_layout(
@@ -269,6 +279,16 @@ with col2:
     if show_results and weight > 0 and age_group:
         fig_spleen = utils.create_spleen_chart_wt(sex, weight, age_group, spleen_volume)
         st.plotly_chart(fig_spleen, use_container_width=True)
+        # Add explanation below the chart
+        st.markdown("""
+        <div style="background-color: #1a324c; padding: 10px 15px; border-radius: 8px; margin-top: 10px;">
+            <p style="color: white; margin: 0; font-size: 0.9rem; line-height: 1.4;">
+                The oblique solid line represents the quantile regression line predicting the 50th percentile, 
+                while the oblique dashed lines below and above correspond to the quantile regression lines 
+                predicting the 5th and 95th percentiles, respectively.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
     else:
         fig_spleen = go.Figure()
         fig_spleen.update_layout(
@@ -295,6 +315,16 @@ if height > 0:
         if show_results and weight > 0 and age_group:
             fig_liver_hwt = utils.create_liver_chart_hwt(sex, height, weight, age_group, liver_volume)
             st.plotly_chart(fig_liver_hwt, use_container_width=True)
+            # Add explanation below the chart
+            st.markdown("""
+            <div style="background-color: #1a324c; padding: 10px 15px; border-radius: 8px; margin-top: 10px;">
+                <p style="color: white; margin: 0; font-size: 0.9rem; line-height: 1.4;">
+                    The oblique solid line represents the quantile regression line predicting the 50th percentile, 
+                    while the oblique dashed lines below and above correspond to the quantile regression lines 
+                    predicting the 5th and 95th percentiles, respectively.
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
         else:
             fig_liver_hwt = go.Figure()
             fig_liver_hwt.update_layout(
@@ -316,6 +346,16 @@ if height > 0:
         if show_results and weight > 0 and age_group:
             fig_spleen_hwt = utils.create_spleen_chart_hwt(sex, height, weight, age_group, spleen_volume)
             st.plotly_chart(fig_spleen_hwt, use_container_width=True)
+            # Add explanation below the chart
+            st.markdown("""
+            <div style="background-color: #1a324c; padding: 10px 15px; border-radius: 8px; margin-top: 10px;">
+                <p style="color: white; margin: 0; font-size: 0.9rem; line-height: 1.4;">
+                    The oblique solid line represents the quantile regression line predicting the 50th percentile, 
+                    while the oblique dashed lines below and above correspond to the quantile regression lines 
+                    predicting the 5th and 95th percentiles, respectively.
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
         else:
             fig_spleen_hwt = go.Figure()
             fig_spleen_hwt.update_layout(
