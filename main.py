@@ -101,12 +101,12 @@ st.markdown("<p class='caution'>Caution: This calculator may not be suitable for
 st.markdown("<div class='section-header'><h2>Reference interval</h2></div>", unsafe_allow_html=True)
 
 # Initialize variables to store calculation results
-liver_hwt_5 = liver_hwt_50 = liver_hwt_95 = ""
-spleen_hwt_5 = spleen_hwt_50 = spleen_hwt_95 = ""
-ratio_hwt_5 = ratio_hwt_50 = ratio_hwt_95 = ""
-liver_wt_5 = liver_wt_50 = liver_wt_95 = ""
-spleen_wt_5 = spleen_wt_50 = spleen_wt_95 = ""
-ratio_wt_5 = ratio_wt_50 = ratio_wt_95 = ""
+liver_hwt_5 = liver_hwt_25 = liver_hwt_50 = liver_hwt_75 = liver_hwt_95 = ""
+spleen_hwt_5 = spleen_hwt_25 = spleen_hwt_50 = spleen_hwt_75 = spleen_hwt_95 = ""
+ratio_hwt_5 = ratio_hwt_25 = ratio_hwt_50 = ratio_hwt_75 = ratio_hwt_95 = ""
+liver_wt_5 = liver_wt_25 = liver_wt_50 = liver_wt_75 = liver_wt_95 = ""
+spleen_wt_5 = spleen_wt_25 = spleen_wt_50 = spleen_wt_75 = spleen_wt_95 = ""
+ratio_wt_5 = ratio_wt_25 = ratio_wt_50 = ratio_wt_75 = ratio_wt_95 = ""
 
 # Check conditions for displaying results
 if show_results and weight > 0:
@@ -115,29 +115,41 @@ if show_results and weight > 0:
     
     # Calculate values using weight only
     liver_wt_5 = f"{calculate_liver_volume_wt(sex, weight, 5):.1f}"
+    liver_wt_25 = f"{calculate_liver_volume_wt(sex, weight, 25):.1f}"
     liver_wt_50 = f"{calculate_liver_volume_wt(sex, weight, 50):.1f}"
+    liver_wt_75 = f"{calculate_liver_volume_wt(sex, weight, 75):.1f}"
     liver_wt_95 = f"{calculate_liver_volume_wt(sex, weight, 95):.1f}"
     
     spleen_wt_5 = f"{calculate_spleen_volume_wt(sex, weight, 5):.1f}"
+    spleen_wt_25 = f"{calculate_spleen_volume_wt(sex, weight, 25):.1f}"
     spleen_wt_50 = f"{calculate_spleen_volume_wt(sex, weight, 50):.1f}"
+    spleen_wt_75 = f"{calculate_spleen_volume_wt(sex, weight, 75):.1f}"
     spleen_wt_95 = f"{calculate_spleen_volume_wt(sex, weight, 95):.1f}"
     
     ratio_wt_5 = "4.1"
+    ratio_wt_25 = "5.2"
     ratio_wt_50 = "6.3"
+    ratio_wt_75 = "7.8"
     ratio_wt_95 = "9.6"
     
     # Calculate values using height and weight if height is provided
     if height > 0:
         liver_hwt_5 = f"{calculate_liver_volume_hwt(sex, height, weight, 5):.1f}"
+        liver_hwt_25 = f"{calculate_liver_volume_hwt(sex, height, weight, 25):.1f}"
         liver_hwt_50 = f"{calculate_liver_volume_hwt(sex, height, weight, 50):.1f}"
+        liver_hwt_75 = f"{calculate_liver_volume_hwt(sex, height, weight, 75):.1f}"
         liver_hwt_95 = f"{calculate_liver_volume_hwt(sex, height, weight, 95):.1f}"
         
         spleen_hwt_5 = f"{calculate_spleen_volume_hwt(sex, height, weight, 5):.1f}"
+        spleen_hwt_25 = f"{calculate_spleen_volume_hwt(sex, height, weight, 25):.1f}"
         spleen_hwt_50 = f"{calculate_spleen_volume_hwt(sex, height, weight, 50):.1f}"
+        spleen_hwt_75 = f"{calculate_spleen_volume_hwt(sex, height, weight, 75):.1f}"
         spleen_hwt_95 = f"{calculate_spleen_volume_hwt(sex, height, weight, 95):.1f}"
         
         ratio_hwt_5 = "4.1"
+        ratio_hwt_25 = "5.2"
         ratio_hwt_50 = "6.3"
+        ratio_hwt_75 = "7.8"
         ratio_hwt_95 = "9.6"
 elif show_results and weight <= 0:
     st.error("Please enter weight.")
@@ -149,9 +161,9 @@ if height > 0:
     
     # Create results table
     data_hwt = [
-        ["Liver volume (cm³)", liver_hwt_5, liver_hwt_50, liver_hwt_95],
-        ["Spleen volume (cm³)", spleen_hwt_5, spleen_hwt_50, spleen_hwt_95],
-        ["Liver-to-spleen volume ratio", ratio_hwt_5, ratio_hwt_50, ratio_hwt_95]
+        ["Liver volume (cm³)", liver_hwt_5, liver_hwt_25, liver_hwt_50, liver_hwt_75, liver_hwt_95],
+        ["Spleen volume (cm³)", spleen_hwt_5, spleen_hwt_25, spleen_hwt_50, spleen_hwt_75, spleen_hwt_95],
+        ["Liver-to-spleen volume ratio", ratio_hwt_5, ratio_hwt_25, ratio_hwt_50, ratio_hwt_75, ratio_hwt_95]
     ]
     
     # Create HTML table directly - 개선된 스타일 (세로 줄 추가)
@@ -161,7 +173,9 @@ if height > 0:
         <tr>
           <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: left; border-bottom: 2px solid #2a4d7a;">Volumetric index</th>
           <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">5 percentile</th>
+          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">25 percentile</th>
           <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">50 percentile</th>
+          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">75 percentile</th>
           <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">95 percentile</th>
         </tr>
       </thead>
@@ -178,6 +192,8 @@ if height > 0:
         html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[1]}</td>'
         html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[2]}</td>'
         html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[3]}</td>'
+        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[4]}</td>'
+        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[5]}</td>'
         html_table += '</tr>'
 
     html_table += """
@@ -195,9 +211,9 @@ else:
 
 # Create results table for weight-only formula
 data_wt = [
-    ["Liver volume (cm³)", liver_wt_5, liver_wt_50, liver_wt_95],
-    ["Spleen volume (cm³)", spleen_wt_5, spleen_wt_50, spleen_wt_95],
-    ["Liver-to-spleen volume ratio", ratio_wt_5, ratio_wt_50, ratio_wt_95]
+    ["Liver volume (cm³)", liver_wt_5, liver_wt_25, liver_wt_50, liver_wt_75, liver_wt_95],
+    ["Spleen volume (cm³)", spleen_wt_5, spleen_wt_25, spleen_wt_50, spleen_wt_75, spleen_wt_95],
+    ["Liver-to-spleen volume ratio", ratio_wt_5, ratio_wt_25, ratio_wt_50, ratio_wt_75, ratio_wt_95]
 ]
 
 # Create HTML table directly - 개선된 스타일 (세로 줄 추가)
@@ -207,7 +223,9 @@ html_table = f"""
     <tr>
       <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: left; border-bottom: 2px solid #2a4d7a;">Volumetric index</th>
       <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">5 percentile</th>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">25 percentile</th>
       <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">50 percentile</th>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">75 percentile</th>
       <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">95 percentile</th>
     </tr>
   </thead>
@@ -224,6 +242,8 @@ for i, row in enumerate(data_wt):
     html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[1]}</td>'
     html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[2]}</td>'
     html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[3]}</td>'
+    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[4]}</td>'
+    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[5]}</td>'
     html_table += '</tr>'
 
 html_table += """
