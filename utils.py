@@ -9,12 +9,16 @@ def create_liver_chart_wt(sex, weight, age_group, measured_volumes):
     
     # Calculate liver volumes for each percentile
     p5_volumes = calculate_liver_volume_wt(sex, weight, 5) 
+    p25_volumes = calculate_liver_volume_wt(sex, weight, 25)
     p50_volumes = calculate_liver_volume_wt(sex, weight, 50)
+    p75_volumes = calculate_liver_volume_wt(sex, weight, 75)
     p95_volumes = calculate_liver_volume_wt(sex, weight, 95)
 
     # Calculate regression lines
     liver_5_line = [calculate_liver_volume_wt(sex, w, 5) for w in weights]
+    liver_25_line = [calculate_liver_volume_wt(sex, w, 25) for w in weights]
     liver_50_line = [calculate_liver_volume_wt(sex, w, 50) for w in weights]
+    liver_75_line = [calculate_liver_volume_wt(sex, w, 75) for w in weights]
     liver_95_line = [calculate_liver_volume_wt(sex, w, 95) for w in weights]
 
     # Create Plotly graph
@@ -22,9 +26,13 @@ def create_liver_chart_wt(sex, weight, age_group, measured_volumes):
     
     # Add percentile lines to liver volume chart with legend
     fig.add_trace(go.Scatter(x=weights, y=liver_5_line, mode='lines', name='5th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dot'), showlegend=True))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
+    fig.add_trace(go.Scatter(x=weights, y=liver_25_line, mode='lines', name='25th percentile', 
+                            line=dict(color='rgba(255,255,255,0.4)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=liver_50_line, mode='lines', name='50th percentile', 
                             line=dict(color='rgba(255,255,255,0.7)'), showlegend=True))
+    fig.add_trace(go.Scatter(x=weights, y=liver_75_line, mode='lines', name='75th percentile', 
+                            line=dict(color='rgba(255,255,255,0.4)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=liver_95_line, mode='lines', name='95th percentile', 
                             line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
     
@@ -88,12 +96,16 @@ def create_spleen_chart_wt(sex, weight, age_group, measured_volumes):
     
     # Calculate spleen volumes for each percentile
     p5_volumes = calculate_spleen_volume_wt(sex, weight, 5) 
+    p25_volumes = calculate_spleen_volume_wt(sex, weight, 25)
     p50_volumes = calculate_spleen_volume_wt(sex, weight, 50)
+    p75_volumes = calculate_spleen_volume_wt(sex, weight, 75)
     p95_volumes = calculate_spleen_volume_wt(sex, weight, 95)
 
     # Calculate regression lines
     spleen_5_line = [calculate_spleen_volume_wt(sex, w, 5) for w in weights]
+    spleen_25_line = [calculate_spleen_volume_wt(sex, w, 25) for w in weights]
     spleen_50_line = [calculate_spleen_volume_wt(sex, w, 50) for w in weights]
+    spleen_75_line = [calculate_spleen_volume_wt(sex, w, 75) for w in weights]
     spleen_95_line = [calculate_spleen_volume_wt(sex, w, 95) for w in weights]
 
     # Create Plotly graph
@@ -101,9 +113,13 @@ def create_spleen_chart_wt(sex, weight, age_group, measured_volumes):
     
     # Add percentile lines to spleen volume chart with legend
     fig.add_trace(go.Scatter(x=weights, y=spleen_5_line, mode='lines', name='5th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dot'), showlegend=True))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
+    fig.add_trace(go.Scatter(x=weights, y=spleen_25_line, mode='lines', name='25th percentile', 
+                            line=dict(color='rgba(255,255,255,0.4)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=spleen_50_line, mode='lines', name='50th percentile', 
                             line=dict(color='rgba(255,255,255,0.7)'), showlegend=True))
+    fig.add_trace(go.Scatter(x=weights, y=spleen_75_line, mode='lines', name='75th percentile', 
+                            line=dict(color='rgba(255,255,255,0.4)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=spleen_95_line, mode='lines', name='95th percentile', 
                             line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
     
@@ -169,12 +185,16 @@ def create_liver_chart_hwt(sex, height, weight, age_group, measured_volumes):
     
     # Calculate liver volumes for each percentile
     p5_volumes = calculate_liver_volume_hwt(sex, height, weight, 5) 
+    p25_volumes = calculate_liver_volume_hwt(sex, height, weight, 25)
     p50_volumes = calculate_liver_volume_hwt(sex, height, weight, 50)
+    p75_volumes = calculate_liver_volume_hwt(sex, height, weight, 75)
     p95_volumes = calculate_liver_volume_hwt(sex, height, weight, 95)
 
     # Calculate regression lines
     liver_5_line = [calculate_liver_volume_hwt(sex, height, w, 5) for w in weights]
+    liver_25_line = [calculate_liver_volume_hwt(sex, height, w, 25) for w in weights]
     liver_50_line = [calculate_liver_volume_hwt(sex, height, w, 50) for w in weights]
+    liver_75_line = [calculate_liver_volume_hwt(sex, height, w, 75) for w in weights]
     liver_95_line = [calculate_liver_volume_hwt(sex, height, w, 95) for w in weights]
 
     # Create Plotly graph
@@ -182,9 +202,13 @@ def create_liver_chart_hwt(sex, height, weight, age_group, measured_volumes):
     
     # Add percentile lines to liver volume chart with legend
     fig.add_trace(go.Scatter(x=weights, y=liver_5_line, mode='lines', name='5th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dot'), showlegend=True))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
+    fig.add_trace(go.Scatter(x=weights, y=liver_25_line, mode='lines', name='25th percentile', 
+                            line=dict(color='rgba(255,255,255,0.4)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=liver_50_line, mode='lines', name='50th percentile', 
                             line=dict(color='rgba(255,255,255,0.7)'), showlegend=True))
+    fig.add_trace(go.Scatter(x=weights, y=liver_75_line, mode='lines', name='75th percentile', 
+                            line=dict(color='rgba(255,255,255,0.4)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=liver_95_line, mode='lines', name='95th percentile', 
                             line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
     
@@ -248,12 +272,16 @@ def create_spleen_chart_hwt(sex, height, weight, age_group, measured_volumes):
     
     # Calculate spleen volumes for each percentile
     p5_volumes = calculate_spleen_volume_hwt(sex, height, weight, 5) 
+    p25_volumes = calculate_spleen_volume_hwt(sex, height, weight, 25)
     p50_volumes = calculate_spleen_volume_hwt(sex, height, weight, 50)
+    p75_volumes = calculate_spleen_volume_hwt(sex, height, weight, 75)
     p95_volumes = calculate_spleen_volume_hwt(sex, height, weight, 95)
     
     # Calculate regression lines
     spleen_5_line = [calculate_spleen_volume_hwt(sex, height, w, 5) for w in weights]
+    spleen_25_line = [calculate_spleen_volume_hwt(sex, height, w, 25) for w in weights]
     spleen_50_line = [calculate_spleen_volume_hwt(sex, height, w, 50) for w in weights]
+    spleen_75_line = [calculate_spleen_volume_hwt(sex, height, w, 75) for w in weights]
     spleen_95_line = [calculate_spleen_volume_hwt(sex, height, w, 95) for w in weights]
 
     # Create Plotly graph
@@ -261,9 +289,13 @@ def create_spleen_chart_hwt(sex, height, weight, age_group, measured_volumes):
     
     # Add percentile lines to spleen volume chart with legend
     fig.add_trace(go.Scatter(x=weights, y=spleen_5_line, mode='lines', name='5th percentile', 
-                            line=dict(color='rgba(255,255,255,0.3)', dash='dot'), showlegend=True))
+                            line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
+    fig.add_trace(go.Scatter(x=weights, y=spleen_25_line, mode='lines', name='25th percentile', 
+                            line=dict(color='rgba(255,255,255,0.4)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=spleen_50_line, mode='lines', name='50th percentile', 
                             line=dict(color='rgba(255,255,255,0.7)'), showlegend=True))
+    fig.add_trace(go.Scatter(x=weights, y=spleen_75_line, mode='lines', name='75th percentile', 
+                            line=dict(color='rgba(255,255,255,0.4)', dash='dot'), showlegend=True))
     fig.add_trace(go.Scatter(x=weights, y=spleen_95_line, mode='lines', name='95th percentile', 
                             line=dict(color='rgba(255,255,255,0.3)', dash='dash'), showlegend=True))
     

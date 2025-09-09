@@ -142,52 +142,10 @@ if show_results and weight > 0:
 elif show_results and weight <= 0:
     st.error("Please enter weight.")
 
-# 1. Regression formula using sex and weight only
-st.markdown("<h3>1. Regression formula using sex and weight</h3>", unsafe_allow_html=True)
-
-# Create results table
-data_wt = [
-    ["Liver volume (cm³)", liver_wt_5, liver_wt_50, liver_wt_95],
-    ["Spleen volume (cm³)", spleen_wt_5, spleen_wt_50, spleen_wt_95],
-    ["Liver-to-spleen volume ratio", ratio_wt_5, ratio_wt_50, ratio_wt_95]
-]
-
-# Create HTML table directly - 개선된 스타일 (세로 줄 추가)
-html_table = f"""
-<table class="dataframe" style="width:100%; border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; background-color: {bg_color}; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-  <thead>
-    <tr>
-      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: left; border-bottom: 2px solid #2a4d7a;">Volumetric index</th>
-      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">5 percentile</th>
-      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">50 percentile</th>
-      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">95 percentile</th>
-    </tr>
-  </thead>
-  <tbody>
-"""
-
-for i, row in enumerate(data_wt):
-    # Apply background color to all rows, alternating colors for odd/even rows
-    bg_color_style = f'background-color: {table_odd_row_color}' if i % 2 == 0 else f'background-color: {table_even_row_color}'
-    html_table += f'<tr style="{bg_color_style}">'
-    
-    # 첫 번째 열은 왼쪽 정렬, 나머지 열은 가운데 정렬 (세로 줄 추가)
-    html_table += f'<td style="padding: 12px 18px; border-bottom: 1px solid #2a4d7a;">{row[0]}</td>'
-    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[1]}</td>'
-    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[2]}</td>'
-    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[3]}</td>'
-    html_table += '</tr>'
-
-html_table += """
-  </tbody>
-</table>
-"""
-
-st.markdown(html_table, unsafe_allow_html=True)
-
-# 2. Regression formula using sex, height, and weight (only if height is provided)
+# Display tables based on height availability
 if height > 0:
-    st.markdown("<h3>2. Regression formula using sex, height, weight</h3>", unsafe_allow_html=True)
+    # 1. Regression formula using sex, height, and weight (priority when height is available)
+    st.markdown("<h3>1. Regression formula using sex, height, weight</h3>", unsafe_allow_html=True)
     
     # Create results table
     data_hwt = [
@@ -228,18 +186,135 @@ if height > 0:
     """
 
     st.markdown(html_table, unsafe_allow_html=True)
+    
+    # 2. Regression formula using sex and weight only (secondary when height is available)
+    st.markdown("<h3>2. Regression formula using sex and weight</h3>", unsafe_allow_html=True)
+else:
+    # 1. Regression formula using sex and weight only (when height is not available)
+    st.markdown("<h3>1. Regression formula using sex and weight</h3>", unsafe_allow_html=True)
+
+# Create results table for weight-only formula
+data_wt = [
+    ["Liver volume (cm³)", liver_wt_5, liver_wt_50, liver_wt_95],
+    ["Spleen volume (cm³)", spleen_wt_5, spleen_wt_50, spleen_wt_95],
+    ["Liver-to-spleen volume ratio", ratio_wt_5, ratio_wt_50, ratio_wt_95]
+]
+
+# Create HTML table directly - 개선된 스타일 (세로 줄 추가)
+html_table = f"""
+<table class="dataframe" style="width:100%; border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; background-color: {bg_color}; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+  <thead>
+    <tr>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: left; border-bottom: 2px solid #2a4d7a;">Volumetric index</th>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">5 percentile</th>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">50 percentile</th>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">95 percentile</th>
+    </tr>
+  </thead>
+  <tbody>
+"""
+
+for i, row in enumerate(data_wt):
+    # Apply background color to all rows, alternating colors for odd/even rows
+    bg_color_style = f'background-color: {table_odd_row_color}' if i % 2 == 0 else f'background-color: {table_even_row_color}'
+    html_table += f'<tr style="{bg_color_style}">'
+    
+    # 첫 번째 열은 왼쪽 정렬, 나머지 열은 가운데 정렬 (세로 줄 추가)
+    html_table += f'<td style="padding: 12px 18px; border-bottom: 1px solid #2a4d7a;">{row[0]}</td>'
+    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[1]}</td>'
+    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[2]}</td>'
+    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[3]}</td>'
+    html_table += '</tr>'
+
+html_table += """
+  </tbody>
+</table>
+"""
+
+st.markdown(html_table, unsafe_allow_html=True)
 
 # Chart section
 st.markdown("<div class='section-header'><h2>Chart: volume vs. weight percentile graph</h2></div>", unsafe_allow_html=True)
 
-# 1. Regression formula using sex and weight only
-st.markdown("<h3>1. Regression formula using sex and weight</h3>", unsafe_allow_html=True)
-
-# Display two graphs side by side
-col1, col2 = st.columns(2)
-
 # Determine age group for chart settings
 age_group = "under_6" if 'age' in locals() and age < 6 else "6_to_11" if 'age' in locals() and age <= 11 else "12_and_above" if 'age' in locals() else None
+
+# Display charts based on height availability
+if height > 0:
+    # 1. Charts using height and weight (priority when height is available)
+    st.markdown("<h3>1. Regression formula using sex, height, weight</h3>", unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.subheader("Liver volume")
+        if show_results and weight > 0 and age_group:
+            fig_liver_hwt = utils.create_liver_chart_hwt(sex, height, weight, age_group, liver_volume)
+            st.plotly_chart(fig_liver_hwt, use_container_width=True)
+            # Add explanation below the chart
+            st.markdown("""
+            <div style="background-color: #1a324c; padding: 10px 15px; border-radius: 8px; margin-top: 10px;">
+                <p style="color: white; margin: 0; font-size: 0.9rem; line-height: 1.4;">
+                    The oblique solid line represents the quantile regression line predicting the 50th percentile, 
+                    while the oblique dashed lines below and above correspond to the quantile regression lines 
+                    predicting the 5th and 95th percentiles, respectively.
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            fig_liver_hwt = go.Figure()
+            fig_liver_hwt.update_layout(
+                title="Quantile Regression Prediction",
+                xaxis_title="Weight (kg)",
+                yaxis_title="Liver Volume (cm³)",
+                height=700,
+                width=700,
+                paper_bgcolor=chart_bg_color,
+                plot_bgcolor=chart_bg_color,
+                font=dict(color=text_color)
+            )
+            fig_liver_hwt.update_xaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
+            fig_liver_hwt.update_yaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
+            st.plotly_chart(fig_liver_hwt, use_container_width=True)
+    
+    with col2:
+        st.subheader("Spleen volume")
+        if show_results and weight > 0 and age_group:
+            fig_spleen_hwt = utils.create_spleen_chart_hwt(sex, height, weight, age_group, spleen_volume)
+            st.plotly_chart(fig_spleen_hwt, use_container_width=True)
+            # Add explanation below the chart
+            st.markdown("""
+            <div style="background-color: #1a324c; padding: 10px 15px; border-radius: 8px; margin-top: 10px;">
+                <p style="color: white; margin: 0; font-size: 0.9rem; line-height: 1.4;">
+                    The oblique solid line represents the quantile regression line predicting the 50th percentile, 
+                    while the oblique dashed lines below and above correspond to the quantile regression lines 
+                    predicting the 5th and 95th percentiles, respectively.
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            fig_spleen_hwt = go.Figure()
+            fig_spleen_hwt.update_layout(
+                title="Quantile Regression Prediction",
+                xaxis_title="Weight (kg)",
+                yaxis_title="Spleen Volume (cm³)",
+                height=700,
+                width=700,
+                paper_bgcolor=chart_bg_color,
+                plot_bgcolor=chart_bg_color,
+                font=dict(color=text_color)
+            )
+            fig_spleen_hwt.update_xaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
+            fig_spleen_hwt.update_yaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
+            st.plotly_chart(fig_spleen_hwt, use_container_width=True)
+    
+    # 2. Charts using weight only (secondary when height is available)
+    st.markdown("<h3>2. Regression formula using sex and weight</h3>", unsafe_allow_html=True)
+else:
+    # 1. Charts using weight only (when height is not available)
+    st.markdown("<h3>1. Regression formula using sex and weight</h3>", unsafe_allow_html=True)
+
+# Display weight-only charts
+col1, col2 = st.columns(2)
 
 # Liver volume chart
 with col1:
@@ -304,73 +379,6 @@ with col2:
         fig_spleen.update_xaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
         fig_spleen.update_yaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
         st.plotly_chart(fig_spleen, use_container_width=True)
-
-# 2. Charts using height and weight (only if height is provided)
-if height > 0:
-    st.markdown("<h3>2. Regression formula using sex, height, weight</h3>", unsafe_allow_html=True)
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.subheader("Liver volume")
-        if show_results and weight > 0 and age_group:
-            fig_liver_hwt = utils.create_liver_chart_hwt(sex, height, weight, age_group, liver_volume)
-            st.plotly_chart(fig_liver_hwt, use_container_width=True)
-            # Add explanation below the chart
-            st.markdown("""
-            <div style="background-color: #1a324c; padding: 10px 15px; border-radius: 8px; margin-top: 10px;">
-                <p style="color: white; margin: 0; font-size: 0.9rem; line-height: 1.4;">
-                    The oblique solid line represents the quantile regression line predicting the 50th percentile, 
-                    while the oblique dashed lines below and above correspond to the quantile regression lines 
-                    predicting the 5th and 95th percentiles, respectively.
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
-        else:
-            fig_liver_hwt = go.Figure()
-            fig_liver_hwt.update_layout(
-                title="Quantile Regression Prediction",
-                xaxis_title="Weight (kg)",
-                yaxis_title="Liver Volume (cm³)",
-                height=700,
-                width=700,
-                paper_bgcolor=chart_bg_color,
-                plot_bgcolor=chart_bg_color,
-                font=dict(color=text_color)
-            )
-            fig_liver_hwt.update_xaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
-            fig_liver_hwt.update_yaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
-            st.plotly_chart(fig_liver_hwt, use_container_width=True)
-    
-    with col2:
-        st.subheader("Spleen volume")
-        if show_results and weight > 0 and age_group:
-            fig_spleen_hwt = utils.create_spleen_chart_hwt(sex, height, weight, age_group, spleen_volume)
-            st.plotly_chart(fig_spleen_hwt, use_container_width=True)
-            # Add explanation below the chart
-            st.markdown("""
-            <div style="background-color: #1a324c; padding: 10px 15px; border-radius: 8px; margin-top: 10px;">
-                <p style="color: white; margin: 0; font-size: 0.9rem; line-height: 1.4;">
-                    The oblique solid line represents the quantile regression line predicting the 50th percentile, 
-                    while the oblique dashed lines below and above correspond to the quantile regression lines 
-                    predicting the 5th and 95th percentiles, respectively.
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
-        else:
-            fig_spleen_hwt = go.Figure()
-            fig_spleen_hwt.update_layout(
-                title="Quantile Regression Prediction",
-                xaxis_title="Weight (kg)",
-                yaxis_title="Spleen Volume (cm³)",
-                height=700,
-                width=700,
-                paper_bgcolor=chart_bg_color,
-                plot_bgcolor=chart_bg_color,
-                font=dict(color=text_color)
-            )
-            fig_spleen_hwt.update_xaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
-            fig_spleen_hwt.update_yaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
-            st.plotly_chart(fig_spleen_hwt, use_container_width=True)
 
 # Copyright information
 st.markdown("<div class='footer'>BMC-Core</div>", unsafe_allow_html=True)
