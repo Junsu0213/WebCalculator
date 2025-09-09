@@ -97,9 +97,6 @@ with col2:
 
 st.markdown("<p class='caution'>Caution: This calculator may not be suitable for children younger than 2 years old.</p>", unsafe_allow_html=True)
 
-# Reference interval section
-st.markdown("<div class='section-header'><h2>Reference interval</h2></div>", unsafe_allow_html=True)
-
 # Initialize variables to store calculation results
 liver_hwt_5 = liver_hwt_25 = liver_hwt_50 = liver_hwt_75 = liver_hwt_95 = ""
 spleen_hwt_5 = spleen_hwt_25 = spleen_hwt_50 = spleen_hwt_75 = spleen_hwt_95 = ""
