@@ -97,6 +97,9 @@ with col2:
 
 st.markdown("<p class='caution'>Caution: This calculator may not be suitable for children younger than 2 years old.</p>", unsafe_allow_html=True)
 
+# Reference interval section
+st.markdown("<div class='section-header'><h2>Reference interval</h2></div>", unsafe_allow_html=True)
+
 # Initialize variables to store calculation results
 liver_hwt_5 = liver_hwt_25 = liver_hwt_50 = liver_hwt_75 = liver_hwt_95 = ""
 spleen_hwt_5 = spleen_hwt_25 = spleen_hwt_50 = spleen_hwt_75 = spleen_hwt_95 = ""
@@ -150,6 +153,101 @@ if show_results and weight > 0:
         ratio_hwt_95 = "9.6"
 elif show_results and weight <= 0:
     st.error("Please enter weight.")
+
+# 1. Regression formula using sex and weight only
+st.markdown("<h3>1. Regression formula using sex and weight</h3>", unsafe_allow_html=True)
+
+# Create results table for weight-only formula
+data_wt = [
+    ["Liver volume (cm³)", liver_wt_5, liver_wt_25, liver_wt_50, liver_wt_75, liver_wt_95],
+    ["Spleen volume (cm³)", spleen_wt_5, spleen_wt_25, spleen_wt_50, spleen_wt_75, spleen_wt_95],
+    ["Liver-to-spleen volume ratio", ratio_wt_5, ratio_wt_25, ratio_wt_50, ratio_wt_75, ratio_wt_95]
+]
+
+# Create HTML table directly - 개선된 스타일 (세로 줄 추가)
+html_table = f"""
+<table class="dataframe" style="width:100%; border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; background-color: {bg_color}; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+  <thead>
+    <tr>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: left; border-bottom: 2px solid #2a4d7a;">Volumetric index</th>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">5 percentile</th>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">25 percentile</th>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">50 percentile</th>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">75 percentile</th>
+      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">95 percentile</th>
+    </tr>
+  </thead>
+  <tbody>
+"""
+
+for i, row in enumerate(data_wt):
+    # Apply background color to all rows, alternating colors for odd/even rows
+    bg_color_style = f'background-color: {table_odd_row_color}' if i % 2 == 0 else f'background-color: {table_even_row_color}'
+    html_table += f'<tr style="{bg_color_style}">'
+    
+    # 첫 번째 열은 왼쪽 정렬, 나머지 열은 가운데 정렬 (세로 줄 추가)
+    html_table += f'<td style="padding: 12px 18px; border-bottom: 1px solid #2a4d7a;">{row[0]}</td>'
+    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[1]}</td>'
+    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[2]}</td>'
+    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[3]}</td>'
+    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[4]}</td>'
+    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[5]}</td>'
+    html_table += '</tr>'
+
+html_table += """
+  </tbody>
+</table>
+"""
+
+st.markdown(html_table, unsafe_allow_html=True)
+
+# 2. Regression formula using sex, height, and weight (only if height is provided)
+if height > 0:
+    st.markdown("<h3>2. Regression formula using sex, height, weight</h3>", unsafe_allow_html=True)
+    
+    # Create results table
+    data_hwt = [
+        ["Liver volume (cm³)", liver_hwt_5, liver_hwt_25, liver_hwt_50, liver_hwt_75, liver_hwt_95],
+        ["Spleen volume (cm³)", spleen_hwt_5, spleen_hwt_25, spleen_hwt_50, spleen_hwt_75, spleen_hwt_95],
+        ["Liver-to-spleen volume ratio", ratio_hwt_5, ratio_hwt_25, ratio_hwt_50, ratio_hwt_75, ratio_hwt_95]
+    ]
+    
+    # Create HTML table directly - 개선된 스타일 (세로 줄 추가)
+    html_table = f"""
+    <table class="dataframe" style="width:100%; border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; background-color: {bg_color}; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+      <thead>
+        <tr>
+          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: left; border-bottom: 2px solid #2a4d7a;">Volumetric index</th>
+          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">5 percentile</th>
+          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">25 percentile</th>
+          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">50 percentile</th>
+          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">75 percentile</th>
+          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">95 percentile</th>
+        </tr>
+      </thead>
+      <tbody>
+    """
+
+    for i, row in enumerate(data_hwt):
+        # Apply background color to all rows, alternating colors for odd/even rows
+        bg_color_style = f'background-color: {table_odd_row_color}' if i % 2 == 0 else f'background-color: {table_even_row_color}'
+        html_table += f'<tr style="{bg_color_style}">'
+        
+        # 첫 번째 열은 왼쪽 정렬, 나머지 열은 가운데 정렬 (세로 줄 추가)
+        html_table += f'<td style="padding: 12px 18px; border-bottom: 1px solid #2a4d7a;">{row[0]}</td>'
+        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[1]}</td>'
+        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[2]}</td>'
+        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[3]}</td>'
+        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[4]}</td>'
+        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[5]}</td>'
+        html_table += '</tr>'
+
+    html_table += """
+      </tbody>
+    </table>
+    """
+
+    st.markdown(html_table, unsafe_allow_html=True)
 
 # Chart section
 st.markdown("<div class='section-header'><h2>Chart: volume vs. weight percentile graph</h2></div>", unsafe_allow_html=True)
@@ -293,104 +391,6 @@ if height > 0:
             fig_spleen_hwt.update_xaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
             fig_spleen_hwt.update_yaxes(showgrid=True, gridwidth=1, gridcolor=chart_grid_color)
             st.plotly_chart(fig_spleen_hwt, use_container_width=True)
-
-# Reference interval table section
-st.markdown("<div class='section-header'><h2>Reference interval</h2></div>", unsafe_allow_html=True)
-
-# 1. Regression formula using sex and weight only
-st.markdown("<h3>1. Regression formula using sex and weight</h3>", unsafe_allow_html=True)
-
-# Create results table for weight-only formula
-data_wt = [
-    ["Liver volume (cm³)", liver_wt_5, liver_wt_25, liver_wt_50, liver_wt_75, liver_wt_95],
-    ["Spleen volume (cm³)", spleen_wt_5, spleen_wt_25, spleen_wt_50, spleen_wt_75, spleen_wt_95],
-    ["Liver-to-spleen volume ratio", ratio_wt_5, ratio_wt_25, ratio_wt_50, ratio_wt_75, ratio_wt_95]
-]
-
-# Create HTML table directly - 개선된 스타일 (세로 줄 추가)
-html_table = f"""
-<table class="dataframe" style="width:100%; border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; background-color: {bg_color}; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-  <thead>
-    <tr>
-      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: left; border-bottom: 2px solid #2a4d7a;">Volumetric index</th>
-      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">5 percentile</th>
-      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">25 percentile</th>
-      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">50 percentile</th>
-      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">75 percentile</th>
-      <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">95 percentile</th>
-    </tr>
-  </thead>
-  <tbody>
-"""
-
-for i, row in enumerate(data_wt):
-    # Apply background color to all rows, alternating colors for odd/even rows
-    bg_color_style = f'background-color: {table_odd_row_color}' if i % 2 == 0 else f'background-color: {table_even_row_color}'
-    html_table += f'<tr style="{bg_color_style}">'
-    
-    # 첫 번째 열은 왼쪽 정렬, 나머지 열은 가운데 정렬 (세로 줄 추가)
-    html_table += f'<td style="padding: 12px 18px; border-bottom: 1px solid #2a4d7a;">{row[0]}</td>'
-    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[1]}</td>'
-    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[2]}</td>'
-    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[3]}</td>'
-    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[4]}</td>'
-    html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[5]}</td>'
-    html_table += '</tr>'
-
-html_table += """
-  </tbody>
-</table>
-"""
-
-st.markdown(html_table, unsafe_allow_html=True)
-
-# 2. Regression formula using sex, height, and weight (only if height is provided)
-if height > 0:
-    st.markdown("<h3>2. Regression formula using sex, height, weight</h3>", unsafe_allow_html=True)
-    
-    # Create results table
-    data_hwt = [
-        ["Liver volume (cm³)", liver_hwt_5, liver_hwt_25, liver_hwt_50, liver_hwt_75, liver_hwt_95],
-        ["Spleen volume (cm³)", spleen_hwt_5, spleen_hwt_25, spleen_hwt_50, spleen_hwt_75, spleen_hwt_95],
-        ["Liver-to-spleen volume ratio", ratio_hwt_5, ratio_hwt_25, ratio_hwt_50, ratio_hwt_75, ratio_hwt_95]
-    ]
-    
-    # Create HTML table directly - 개선된 스타일 (세로 줄 추가)
-    html_table = f"""
-    <table class="dataframe" style="width:100%; border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; background-color: {bg_color}; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-      <thead>
-        <tr>
-          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: left; border-bottom: 2px solid #2a4d7a;">Volumetric index</th>
-          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">5 percentile</th>
-          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">25 percentile</th>
-          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">50 percentile</th>
-          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">75 percentile</th>
-          <th style="background-color: {header_bg_color}; color: white; padding: 14px 18px; text-align: center; border-bottom: 2px solid #2a4d7a; border-left: 1px solid #2a4d7a;">95 percentile</th>
-        </tr>
-      </thead>
-      <tbody>
-    """
-
-    for i, row in enumerate(data_hwt):
-        # Apply background color to all rows, alternating colors for odd/even rows
-        bg_color_style = f'background-color: {table_odd_row_color}' if i % 2 == 0 else f'background-color: {table_even_row_color}'
-        html_table += f'<tr style="{bg_color_style}">'
-        
-        # 첫 번째 열은 왼쪽 정렬, 나머지 열은 가운데 정렬 (세로 줄 추가)
-        html_table += f'<td style="padding: 12px 18px; border-bottom: 1px solid #2a4d7a;">{row[0]}</td>'
-        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[1]}</td>'
-        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[2]}</td>'
-        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[3]}</td>'
-        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[4]}</td>'
-        html_table += f'<td style="padding: 12px 18px; text-align: center; border-bottom: 1px solid #2a4d7a; border-left: 1px solid #2a4d7a;">{row[5]}</td>'
-        html_table += '</tr>'
-
-    html_table += """
-      </tbody>
-    </table>
-    """
-
-    st.markdown(html_table, unsafe_allow_html=True)
 
 # Copyright information
 st.markdown("<div class='footer'>BMC-Core</div>", unsafe_allow_html=True)
