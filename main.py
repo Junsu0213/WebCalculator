@@ -126,10 +126,10 @@ if show_results and weight > 0:
     spleen_wt_75 = f"{calculate_spleen_volume_wt(sex, weight, 75):.1f}"
     spleen_wt_95 = f"{calculate_spleen_volume_wt(sex, weight, 95):.1f}"
     
-    ratio_wt_5 = "4.1"
+    ratio_wt_5 = "4.2"
     ratio_wt_25 = "5.2"
     ratio_wt_50 = "6.3"
-    ratio_wt_75 = "7.8"
+    ratio_wt_75 = "7.5"
     ratio_wt_95 = "9.6"
     
     # Calculate values using height and weight if height is provided
@@ -146,10 +146,10 @@ if show_results and weight > 0:
         spleen_hwt_75 = f"{calculate_spleen_volume_hwt(sex, height, weight, 75):.1f}"
         spleen_hwt_95 = f"{calculate_spleen_volume_hwt(sex, height, weight, 95):.1f}"
         
-        ratio_hwt_5 = "4.1"
+        ratio_hwt_5 = "4.2"
         ratio_hwt_25 = "5.2"
         ratio_hwt_50 = "6.3"
-        ratio_hwt_75 = "7.8"
+        ratio_hwt_75 = "7.5"
         ratio_hwt_95 = "9.6"
 elif show_results and weight <= 0:
     st.error("Please enter weight.")
@@ -280,7 +280,7 @@ with col1:
     else:
         fig_liver = go.Figure()
         fig_liver.update_layout(
-            title="Quantile Regression Prediction",
+            title=dict(text="Quantile Regression Prediction", font=dict(color="white")),
             xaxis_title="Weight (kg)",
             yaxis_title="Liver Volume (cm³)",
             height=700,
@@ -312,7 +312,7 @@ with col2:
     else:
         fig_spleen = go.Figure()
         fig_spleen.update_layout(
-            title="Quantile Regression Prediction",
+            title=dict(text="Quantile Regression Prediction", font=dict(color="white")),
             xaxis_title="Weight (kg)",
             yaxis_title="Spleen Volume (cm³)",
             height=700,
@@ -348,7 +348,7 @@ if height > 0:
         else:
             fig_liver_hwt = go.Figure()
             fig_liver_hwt.update_layout(
-                title="Quantile Regression Prediction",
+                title=dict(text="Quantile Regression Prediction", font=dict(color="white")),
                 xaxis_title="Weight (kg)",
                 yaxis_title="Liver Volume (cm³)",
                 height=700,
@@ -379,7 +379,7 @@ if height > 0:
         else:
             fig_spleen_hwt = go.Figure()
             fig_spleen_hwt.update_layout(
-                title="Quantile Regression Prediction",
+                title=dict(text="Quantile Regression Prediction", font=dict(color="white")),
                 xaxis_title="Weight (kg)",
                 yaxis_title="Spleen Volume (cm³)",
                 height=700,

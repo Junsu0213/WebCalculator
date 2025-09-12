@@ -49,7 +49,7 @@ def create_liver_chart_wt(sex, weight, age_group, measured_volumes):
                              marker=dict(size=10, color='orange', symbol='circle'), showlegend=True))
     # Configure graph layout
     fig.update_layout(
-        title="Quantile Regression Prediction",
+        title=dict(text="Quantile Regression Prediction", font=dict(color="white")),
         xaxis_title="Weight (kg)",
         yaxis_title="Liver Volume (cm³)",
         legend=dict(
@@ -137,7 +137,7 @@ def create_spleen_chart_wt(sex, weight, age_group, measured_volumes):
     
     # Configure graph layout
     fig.update_layout(
-        title="Quantile Regression Prediction",
+        title=dict(text="Quantile Regression Prediction", font=dict(color="white")),
         xaxis_title="Weight (kg)",
         yaxis_title="Spleen Volume (cm³)",
         legend=dict(
@@ -225,7 +225,7 @@ def create_liver_chart_hwt(sex, height, weight, age_group, measured_volumes):
                              marker=dict(size=10, color='orange', symbol='circle'), showlegend=True))
     # Configure graph layout
     fig.update_layout(
-        title="Quantile Regression Prediction",
+        title=dict(text="Quantile Regression Prediction", font=dict(color="white")),
         xaxis_title="Weight (kg)",
         yaxis_title="Liver Volume (cm³)",
         legend=dict(
@@ -313,7 +313,7 @@ def create_spleen_chart_hwt(sex, height, weight, age_group, measured_volumes):
     
     # Configure graph layout
     fig.update_layout(
-        title="Quantile Regression Prediction",
+        title=dict(text="Quantile Regression Prediction", font=dict(color="white")),
         xaxis_title="Weight (kg)",
         yaxis_title="Spleen Volume (cm³)",
         legend=dict(
