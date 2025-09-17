@@ -8,7 +8,7 @@ def calculate_liver_volume_hwt(sex, height, weight, percentile):
         if percentile == 5:
             return 10.8038 * weight + 2.410536 * height + 12.37625
         elif percentile == 25:
-            return 14.06 * weight + 1.18 * height + 60.76
+            return 14.06 * weight + 1.81 * height + 60.76
         elif percentile == 50:
             return 15.92630 * weight + 1.54535 * height + 100.25660
         elif percentile == 75:
@@ -19,7 +19,7 @@ def calculate_liver_volume_hwt(sex, height, weight, percentile):
         if percentile == 5:
             return 10.8038 * weight + 2.410536 * height - 30.5622
         elif percentile == 25:
-            return 14.06 * weight + 1.18 * height + 26.27
+            return 14.06 * weight + 1.81 * height + 26.27
         elif percentile == 50:
             return 15.92630 * weight + 1.54535 * height + 64.07086
         elif percentile == 75:
